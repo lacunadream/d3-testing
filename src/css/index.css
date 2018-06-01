@@ -1,0 +1,29 @@
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.vertical-chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+  width: 10px;  
+}
+
+.container{
+  /* background-color:#2E4272; */
+  display:flex;
+}
+
+.charts text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
