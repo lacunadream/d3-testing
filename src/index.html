@@ -14,12 +14,12 @@
       <div class="charts"></div>
     </div>
     <script>
-      var data = [4, 8, 15, 16, 23, 42];
+      /*
+       * async data load + chart generation
+       */
       async function loadData() {
         var loadedData = await d3.csv("./data/chart.csv");
-        console.log(loadedData)
         for (const d of loadedData) {
-          console.log(d)
           console.log(d.value)
         }
         return loadedData;
@@ -38,6 +38,10 @@
 
       generateHorizontalChart();
 
+      /*
+       * vertical bar chart
+       */
+      var data = [4, 8, 15, 16, 23, 42];
       var verticalBarHeight = 420;
       var heightScale = d3.scaleLinear()
           .domain([0, d3.max(data)])
@@ -46,7 +50,7 @@
       var w = 20, h = 50;
 
       var x = d3.scaleLinear()
-        .range([0, w]);
+        .range([0, w]); // domain not required
 
       function marginScale(x) {
         return verticalBarHeight - heightScale(x);
@@ -75,6 +79,7 @@
         .attr("height", function(d) { return heightScale(d); } )
         .attr("fill", "pink");
 
+      // problem here. need to wrap rect and text in a separate object
       indivSvgBar.append("text")
         .attr("x", w / 2)
         .attr("y", (d) => { return marginScale(d) - 3; })
