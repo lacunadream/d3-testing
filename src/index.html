@@ -70,28 +70,29 @@
         .attr("width", 20 * data.length)
         .attr("height", verticalBarHeight);
 
-      var indivSvgBar = chart.selectAll("rect")
+      var indivSvgBar = chart.selectAll("g")
         .data(data)
-        .enter().append("rect")
-        .attr("x", function(d, i) { return x(i) - .5; })
+        .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(" + i * w + ",0)"; });
+
+      indivSvgBar.append("rect")
         .attr("y", function(d) { return marginScale(d) - .5; })
-        .attr("width", w)
         .attr("height", function(d) { return heightScale(d); } )
+        .attr("width", w-1)
         .attr("fill", "pink");
 
-      // problem here. need to wrap rect and text in a separate object
       indivSvgBar.append("text")
         .attr("x", w / 2)
-        .attr("y", (d) => { return marginScale(d) - 3; })
+        .attr("y", (d) => { return marginScale(d) + 6; })
         .attr("dy", ".35em")
         .text(function(d) { return d; });        
 
-      chart.append("line")
-        .attr("x1", 0)
-        .attr("x2", w * data.length)
-        .attr("y1", verticalBarHeight - .5)
-        .attr("y2", verticalBarHeight - .5)
-        .style("stroke", "#000");
+      // chart.append("line")
+      //   .attr("x1", 0)
+      //   .attr("x2", w * data.length)
+      //   .attr("y1", verticalBarHeight - .5)
+      //   .attr("y2", verticalBarHeight - .5)
+      //   .style("stroke", "#000");
 
     </script>
   </body>
